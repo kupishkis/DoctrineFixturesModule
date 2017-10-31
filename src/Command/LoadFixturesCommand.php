@@ -79,7 +79,7 @@ EOT
             if (is_dir($path)) {
                 $loader->loadFromDirectory($path);
             } elseif (is_file($path)) {
-                $loader->addFixture(require $path);
+                $loader->loadFromFile($path);
             }
         }
         $fixtures = $loader->getFixtures();
