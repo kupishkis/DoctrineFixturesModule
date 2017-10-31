@@ -1,10 +1,10 @@
 <?php
 
-namespace EwgoDoctrineFixtures\Command;
+namespace KupDoctrineFixtures\Command;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use EwgoDoctrineFixtures\Loader\ServiceLocatorAwareLoader;
+use KupDoctrineFixtures\Loader\ServiceLocatorAwareLoader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -16,7 +16,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  * A lot of this code comes from the symfony2 equivalent
  *
  * @link https://github.com/doctrine/DoctrineFixturesBundle
- * @package EwgoDoctrineFixtures\Command
  */
 class LoadFixturesCommand extends Command
 {
@@ -79,6 +78,8 @@ EOT
         foreach ($paths as $path) {
             if (is_dir($path)) {
                 $loader->loadFromDirectory($path);
+            } elseif (is_file($path)) {
+                $loader->addFixture(require $path);
             }
         }
         $fixtures = $loader->getFixtures();

@@ -1,7 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
-return array(
-    'doctrinefixtures' => array(
-        'paths' => array()
-    )
-);
+return [
+    'doctrinefixtures' => [
+        'paths' => []
+    ]
+];

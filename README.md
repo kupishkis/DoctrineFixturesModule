@@ -1,16 +1,17 @@
-# EwgoDoctrineFixtures module
+# KupDoctrineFixtures module (fork of EwgoDoctrineFixtures module)
 
 ## About
 
-The EwgoDoctrineFixtures module provides ZF2 integration with the [Doctrine Fixtures](https://github.com/doctrine/data-fixtures) library.
+The KupDoctrineFixtures module provides ZF2 integration with the [Doctrine Fixtures](https://github.com/doctrine/data-fixtures) library.
+Difference from EwgoDoctrineFixtures is that this module actually supports fixtures loading from single file.
 
 ## Installation
 
 ``` bash
-$ php composer.phar require ewgo/doctrine-fixtures-module
+$ php composer.phar require kupishkis/doctrine-fixtures-module
 ```
 
-Add "EwgoDoctrineFixtures" to the list of loaded modules.
+Add "KupDoctrineFixtures" to the list of loaded modules.
 
 ## Configuration
 
@@ -34,7 +35,7 @@ You can also directly extend **EwgoDoctrineFixtures\Fixture\ServiceLocatorAwareA
 ``` php
 namespace MyModule\DataFixtures\ORM;
 
-use EwgoDoctrineFixtures\Fixture\ServiceLocatorAwareAbstractFixture;
+use KupDoctrineFixtures\Fixture\ServiceLocatorAwareAbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use MyModule\Entity\User;
 
@@ -60,7 +61,5 @@ class LoadUserData extends ServiceLocatorAwareAbstractFixture
 $ vendor/bin/doctrine-module fixtures:load
 ```
 See the help (--help) for options.
-
-
 
 For more information see the [Doctrine Fixtures documentation](https://github.com/doctrine/data-fixtures).

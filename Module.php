@@ -1,35 +1,37 @@
 <?php
 
-namespace EwgoDoctrineFixtures;
+namespace KupDoctrineFixtures;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\InitProviderInterface;
 use Zend\ModuleManager\ModuleManagerInterface;
 use Zend\EventManager\EventInterface;
-use EwgoDoctrineFixtures\Command\LoadFixturesCommand;
+use KupDoctrineFixtures\Command\LoadFixturesCommand;
 
 class Module implements AutoloaderProviderInterface, InitProviderInterface
 {
-    public function getAutoloaderConfig()
+    public function getAutoloaderConfig(): array
     {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
+        return [
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
+                    __NAMESPACE__ => __DIR__ . '/src/',
+                ],
+            ],
+        ];
     }
 
-    public function getConfig()
+    public function getConfig(): array
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
     public function init(ModuleManagerInterface $moduleManager)
     {
-        $moduleManager->getEventManager()->getSharedManager()
-            ->attach('doctrine', 'loadCli.post', function(EventInterface $e){
+        $moduleManager->getEventManager()->getSharedManager()->attach(
+            'doctrine',
+            'loadCli.post',
+            function (EventInterface $e) {
                 $command = new LoadFixturesCommand();
                 $command->setServiceLocator($e->getParam('ServiceManager'));
                 $e->getTarget()->add($command);
