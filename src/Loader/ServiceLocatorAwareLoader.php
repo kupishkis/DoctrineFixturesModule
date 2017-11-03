@@ -2,6 +2,7 @@
 
 namespace KupDoctrineFixtures\Loader;
 
+use Doctrine\Common\DataFixtures\Loader;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
